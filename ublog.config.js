@@ -1,10 +1,10 @@
 module.exports = {
-  title: "uBlog",
+  title: "MAHcodes",
   description:
-    "A minimalist blog on nostr that allows anyone to easily create their own personal micro-blog.",
+    "My personal blog. I write about programming, web development, and other things I find interesting.",
   favicon:
-    "https://upload.wikimedia.org/wikipedia/commons/0/0b/Greek_lc_mu.svg",
-  logo: "https://upload.wikimedia.org/wikipedia/commons/0/0b/Greek_lc_mu.svg",
+    "/images/logo.svg",
+  logo: "/images/logo.svg",
   npub: "npub1qd3hhtge6vhwapp85q8eg03gea7ftuf9um4r8x4lh4xfy2trgvksf6dkva",
   themes: [
     // "light",
