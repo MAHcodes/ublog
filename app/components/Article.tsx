@@ -15,6 +15,16 @@ const Article: FC<ArticleProps> = ({ event }) => {
   const title = getTagValues("title", tags);
   const image = getTagValues("image", tags);
   const summary = getTagValues("summary", tags);
+  let { content } = event;
+
+  function getTValues(tags: string[][]) {
+    return tags
+      .filter((subTags) => subTags[0] === "t")
+      .map((subTags) => subTags[1])
+      .filter((t) => t.length <= 20);
+  }
+
+  const tValues = getTValues(event.tags);
   const SUMMARY_PREVIEW_LENGTH = 200;
 
   const { setCachedEvent } = useContext(CachedEventContext);
@@ -51,15 +61,26 @@ const Article: FC<ArticleProps> = ({ event }) => {
           />
         </figure>
       ) : null}
-      <div className="card-body sm:flex-[.65]">
+      <div className="card-body sm:flex-[.65] gap-4">
         {title ? <h2 className="card-title">{title}</h2> : null}
         {summary ? (
           <p>
-            {summary.length > SUMMARY_PREVIEW_LENGTH
-              ? summary.slice(0, SUMMARY_PREVIEW_LENGTH) + "..."
-              : summary}
+            {summary
+              ? summary.length > SUMMARY_PREVIEW_LENGTH
+                ? summary.slice(0, SUMMARY_PREVIEW_LENGTH) + "..."
+                : summary
+              : content.length > SUMMARY_PREVIEW_LENGTH
+                ? content.slice(0, SUMMARY_PREVIEW_LENGTH) + "..."
+                : content}
           </p>
         ) : null}
+        <ul className="flex items-center gap-2 flex-wrap">
+          {tValues.map((tag, idx) => (
+            <li key={idx} className="badge">
+              {tag}
+            </li>
+          ))}
+        </ul>
       </div>
     </article>
   );
